@@ -19,6 +19,7 @@ my class Num {
         my Num $num = self;
         my Int $signum = $num < 0 ?? -1 !! 1;
         $num = -$num if $signum == -1;
+        return Rat.new($signum, 0) if $num == $Inf;
 
         # Find convergents of the continued fraction.
 
