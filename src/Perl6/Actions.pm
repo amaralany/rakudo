@@ -2546,7 +2546,7 @@ class Perl6::Actions is HLL::Actions {
                 # XXX: Need to awesomeize with which type it got
                 $/.CURSOR.panic('Macro did not return AST');
             }
-            make nqp::getattr($quasi_ast, $ast_class, '$!past');
+            make nqp::getattr(pir::perl6_decontainerize__PP($quasi_ast), $ast_class, '$!past');
         }
         else {
             my $past := capture_or_parcel($<args>.ast, ~$<identifier>);
@@ -2646,7 +2646,7 @@ class Perl6::Actions is HLL::Actions {
                     # XXX: Need to awesomeize with which type it got
                     $/.CURSOR.panic('Macro did not return AST');
                 }
-                $past := nqp::getattr($quasi_ast, $ast_class, '$!past');
+                $past := nqp::getattr(pir::perl6_decontainerize__PP($quasi_ast), $ast_class, '$!past');
             }
             else {
                 $past := capture_or_parcel($<args>.ast, ~$<longname>);
@@ -2976,7 +2976,7 @@ class Perl6::Actions is HLL::Actions {
                     # XXX: Need to awesomeize with which type it got
                     $/.CURSOR.panic('Macro did not return AST');
                 }
-                make nqp::getattr($quasi_ast, $ast_class, '$!past');
+                make nqp::getattr(pir::perl6_decontainerize__PP($quasi_ast), $ast_class, '$!past');
                 return 'an irrelevant value';
             }
         }
